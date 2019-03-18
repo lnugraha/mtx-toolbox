@@ -1,0 +1,19 @@
+\#!/bin/bash
+clear;
+
+rm -r build/;
+mkdir build/;
+cd ./build;
+
+
+cmake ..; 
+make -j16;
+
+# execute the binary
+cd ../bin/;
+
+if [[ $? -eq 0 ]]; then
+	echo "Build SUCCESS";
+else
+	echo "Build FAIL";
+fi;
