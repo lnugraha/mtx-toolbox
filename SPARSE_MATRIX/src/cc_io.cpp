@@ -8,7 +8,7 @@
 
 /******************************************************************************/
 
-void cc_data_read ( char *prefix, int ncc, int n, int icc[], int ccc[], 
+void cc_data_read(char *prefix, int ncc, int n, int icc[], int ccc[], 
   double acc[] )
 
 /******************************************************************************/
