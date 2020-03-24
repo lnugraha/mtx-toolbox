@@ -1,10 +1,13 @@
 #include "DenseMatrix.hpp"
+#include "Timer.hpp"
 #include <math.h>
+#include <gsl/gsl_matrix_double.h>
+#include <gsl/gsl_blas.h>
 
 #define REAL double
-#define SIZE 64
 
 int main(int argc, char *argv[]){
+  const int SIZE = 1000000;
   int side = sqrt(SIZE);
   REAL *A = (REAL*)calloc(SIZE, sizeof(REAL));
   REAL *B = (REAL*)calloc(SIZE, sizeof(REAL)); 
@@ -19,13 +22,36 @@ int main(int argc, char *argv[]){
 
   for (int i=0; i<SIZE; ++i) C[i] = 0.0;
 
-  randMatrix(A, side, side);
-  randMatrix(B, side, side);
+  randMatrix(A, side, side); randMatrix(B, side, side);
 
+  { 
+  Timer time_00;
   dgemm(A, side, side, B, side, side, C);
-  printf("\nDisplaying Matrix Multiplication Result:\n");
-  displayMatrix(C, side, side);
+  }
+  // printf("\nDisplaying Matrix Multiplication Result:\n");
+  // displayMatrix(C, side, side);
   
+
+  REAL *C_ans = (REAL*)calloc(SIZE, sizeof(REAL));
+  gsl_matrix_view A_gsl = gsl_matrix_view_array(A, side, side);
+  gsl_matrix_view B_gsl = gsl_matrix_view_array(B, side, side);
+  gsl_matrix_view C_gsl = gsl_matrix_view_array(C_ans, side, side);
+
+  {
+  Timer time_01;
+  gsl_blas_dgemm(CblasNoTrans, CblasNoTrans, 1.0, &A_gsl.matrix, &B_gsl.matrix, 
+  0.0, &C_gsl.matrix);
+  }
+  /*
+  printf("\nDisplaying Matrix Multiplication Result:\n");
+  for (int i=0; i<side; ++i){
+	for (int j=0; j<side; ++j){
+	  int idx = i*side + j;
+	  printf("%.2f ", C_ans[idx]);
+	}
+	printf("\n");
+  }
+  */
 #if 0
   for (int i=0; i<side; ++i){
     for (int j=0; j<side; ++j){
