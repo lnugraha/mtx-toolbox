@@ -81,6 +81,28 @@ void dgemm( double *A, int rowA, int colA,
   } // END-FOR i
 }
 
+// TODO optimized dgemm
+// void dgemm_opt(){
+// ijk-form
+// for i = 1 to M{
+//  for j = 1 to N{
+//    c[i][j] = 0.0
+//    for k = 1 to P{
+//      c[i][j] += a[i][k]*b[k][j]
+//    }
+//  }
+// }
+//
+// jki-form
+// for j = 1 to N{
+//  for i = 1 to M
+//    c[i][j] = 0.0;
+//  for k = 1 to P{
+//    for i = 1 to M{
+//      c[i][j] += a[i][k]*b[k][j]
+//    }
+//  }
+// }
 
 void sgemm( float **A, int rowA, int colA, float **B, int rowB, int colB, 
             float **C, float alpha, float beta, float gamma )
@@ -158,10 +180,40 @@ void dgemv( double *matA, int rowA, int colA, double *vecB, int sizeB,
   } // END-FOR i
 }
 
-// void sgemv();
-// void sgemv();
+// TODO: GTEST
+void sgemv( float **matA, int rowA, int colA, float *vecB, int sizeB, 
+            float *vecC )
+{
+  if (colA != sizeB){
+    printf("ERROR: Inconsistent number of rows and columns");
+    exit(1);
+  }
+  for (int i=0; i<rowA; ++i){
+    float sum = 0.0;
+    for (int j=0; j<sizeB; ++j){
+      sum += matA[i][j] * vecB[j];
+    } // END-FOR j
+    vecC[i] = sum;
+  } // END-FOR i
+}
 
-
+// TODO: GTEST
+void sgemv( float *matA, int rowA, int colA, float *vecB, int sizeB, 
+            float *vecC )
+{
+  if (colA != sizeB){
+    printf("ERROR: Inconsistent number of rows and columns");
+    exit(1);
+  }
+  for (int i=0; i<rowA; ++i){
+    double sum = 0.0;
+    for (int j=0; j<sizeB; ++j){
+      int idx = i*colA + j;
+      sum += matA[idx] * vecB[j];
+    } // END-FOR j
+    vecC[i] = sum;
+  } // END-FOR i
+}
 
 // TODO: GTEST
 double ddot( double *vecA, double *vecB, int size, double alpha, double beta )
