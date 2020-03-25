@@ -35,8 +35,11 @@ void dgemv( double **matA, int rowA, int colA, double *vecB, int sizeB,
 void dgemv( double *matA, int rowA, int colA, double *vecB, int sizeB, 
             double *vecC );
 
-// void sgemv();
-// void sgemv();
+void sgemv( float **matA, int rowA, int colA, float *vecB, int sizeB, 
+            float *vecC );
+
+void sgemv( float *matA, int rowA, int colA, float *vecB, int sizeB, 
+            float *vecC );
 
 double ddot( double *vecA, double *vecB, int size, 
              double alpha=1.0, double beta=1.0 );
