@@ -30,7 +30,6 @@ int main(int argc, char *argv[]){
   }
   // printf("\nDisplaying Matrix Multiplication Result:\n");
   // displayMatrix(C, side, side);
-  
 
   REAL *C_ans = (REAL*)calloc(SIZE, sizeof(REAL));
   gsl_matrix_view A_gsl = gsl_matrix_view_array(A, side, side);
