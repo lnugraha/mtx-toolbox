@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 if [[ -d build/ ]]; then
   echo "Deleting previous build folder";

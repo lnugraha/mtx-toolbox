@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../../include/DenseMatrix.hpp
+stdio.h
+-
+stdlib.h
+-
+time.h
+-
+
+../../include/Timer.hpp
+iostream
+-
+chrono
+-
+
+/Users/war-machine/Documents/GitHub/mtx-toolbox/DENSE_MATRIX/GTEST/main.cpp
+DenseMatrix.hpp
+/Users/war-machine/Documents/GitHub/mtx-toolbox/DENSE_MATRIX/GTEST/DenseMatrix.hpp
+math.h
+-
+gsl/gsl_blas.h
+-
+gtest/gtest.h
+-
+
+/Users/war-machine/Documents/GitHub/mtx-toolbox/DENSE_MATRIX/src/DenseMatrix.cpp
+DenseMatrix.hpp
+/Users/war-machine/Documents/GitHub/mtx-toolbox/DENSE_MATRIX/src/DenseMatrix.hpp
+
+/Users/war-machine/Documents/GitHub/mtx-toolbox/DENSE_MATRIX/src/Timer.cpp
+Timer.hpp
+/Users/war-machine/Documents/GitHub/mtx-toolbox/DENSE_MATRIX/src/Timer.hpp
+

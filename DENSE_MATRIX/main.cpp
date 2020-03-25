@@ -52,7 +52,9 @@ int main(int argc, char *argv[]){
 	printf("\n");
   }
   */
+
 #if 0
+// Matrix matrix multiplication using 2D array scenario
   for (int i=0; i<side; ++i){
     for (int j=0; j<side; ++j){
       Z[i][j] = 0.0;
