@@ -5,8 +5,13 @@
 fcn autoPush($1){
   echo "Updating and pushing to master repository";
   git add .;
-  git commit -m $1;
-  git push;
+  
+  if [[ !$1 ]]; then
+    git commit -m "Test";
+  else
+    git commit -m $1;
+  fi
+  #git push;
 }
 
 autoPush$1
