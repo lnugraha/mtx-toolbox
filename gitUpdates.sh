@@ -13,6 +13,7 @@ fcn autoPush($1){
     git commit -m $1;
     git push;
   fi
+  echo "Pushing success";
 }
 
 autoPush$1
