@@ -4,8 +4,8 @@ function autoPush(){
   echo "Updating and pushing to master repository";
   git add .;
   
-  if [[ !$1 ]]; then
-    git commit -m "Test";
+  if [[ $# -eq 0 ]]; then
+    git commit -m "Modified and updated files";
     git push;
   else
     git commit -m $1;
