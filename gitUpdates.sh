@@ -16,4 +16,4 @@ fcn autoPush($1){
   echo "Pushing success";
 }
 
-autoPush$1
+autoPush $1
