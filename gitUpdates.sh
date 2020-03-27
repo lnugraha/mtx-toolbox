@@ -8,10 +8,11 @@ fcn autoPush($1){
   
   if [[ !$1 ]]; then
     git commit -m "Test";
+    git push;
   else
     git commit -m $1;
+    git push;
   fi
-  git push;
 }
 
 autoPush$1
