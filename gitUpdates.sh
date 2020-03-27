@@ -2,7 +2,7 @@
 
 # $1="Updated existing modules and added new files";
 
-fcn autoPush($1){
+function autoPush(){
   echo "Updating and pushing to master repository";
   git add .;
   
@@ -14,7 +14,6 @@ fcn autoPush($1){
     git push;
   fi
   echo "Pushing success";
-
 }
 
 autoPush $1
