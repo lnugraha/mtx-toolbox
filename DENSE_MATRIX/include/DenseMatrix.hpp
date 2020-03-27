@@ -13,9 +13,13 @@ void randMatrix(double *A, int row, int col);
 
 void randMatrix(double **A, int row, int col);
 
-void displayMatrix(REAL **M, int row, int col);
+void randVector(double *A, int size);
 
-void displayMatrix(REAL *M, int row, int col);
+void displayMatrix(double **M, int row, int col);
+
+void displayMatrix(double *M, int row, int col);
+
+void displayVector(double *A, int size);
 
 void dgemm( double **A, int rowA, int colA, double **B, int rowB, int colB, 
             double **C, double alpha=1.0, double beta=1.0, double gamma=1.0 );

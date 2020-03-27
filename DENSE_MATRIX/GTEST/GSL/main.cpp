@@ -46,10 +46,8 @@ TEST(CASE_02, two_dimension_configuration){
   REAL **Z = (REAL **)calloc(side, sizeof(REAL *)); // row then column
   for (int i=0; i<side; ++i) Z[i] = (REAL *)calloc(side, sizeof(REAL));
 
-
   randMatrix(X, side, side); randMatrix(Y, side, side);
   dgemm(X, side, side, Y, side, side, Z);
-
 
   for (int i=0; i<side; ++i){
     free(X[i]); free(Y[i]); free(Z[i]);
@@ -57,6 +55,36 @@ TEST(CASE_02, two_dimension_configuration){
   free(X); free(Y); free(Z);
 }
 
+TEST(CASE_03, matrix_vector_multiplication){
+  int side = sqrt(SIZE);
+  REAL *A = (REAL*)calloc(SIZE, sizeof(REAL)); // matrix
+  REAL *B = (REAL*)calloc(side, sizeof(REAL)); // vector 
+  REAL *C = (REAL*)calloc(side, sizeof(REAL)); // vector [result]
+  REAL *C_ans = (REAL*)calloc(side, sizeof(REAL)); // vector [result]
+
+  for (int i=0; i<side; ++i){ C[i] = 0.0; C_ans[i] = 0.0; }
+  
+  randMatrix(A, side, side); randVector(B, side);
+  // Manual Version
+  dgemv(A, side, side, B, side, C);
+
+  gsl_matrix_view A_gsl = gsl_matrix_view_array(A, side, side);
+  gsl_vector_view B_gsl = gsl_vector_view_array(B, side);
+  gsl_vector_view C_gsl = gsl_vector_view_array(C_ans, side);
+  // GSL Version
+  // for (int i=0; i<side; ++i) EXPECT_NEAR(C_ans[i], C[i], TOL);
+  free(A); free(B); free(C); free(C_ans);
+}
+
+TEST(CASE_04, dot_product){
+
+
+}
+
+TEST(CASE_05, vector_scaling){
+
+
+}
 
 int main(int argc, char *argv[]){
   testing::InitGoogleTest(&argc,argv);

@@ -1,34 +1,36 @@
 #include "DenseMatrix.hpp"
 
-void randMatrix(REAL *A, int row, int col){
+void randMatrix(double *A, int row, int col){
   srand((long)time(NULL));
   for (int i=0; i<row; ++i){
     for (int j=0; j<col; ++j){
-      REAL random = rand()/(REAL)RAND_MAX;
       int idx = i*col + j;
-      A[idx] = random;
+      A[idx] = rand()/(double)RAND_MAX;
     }
   }
 }
 
-void randMatrix(REAL **A, int row, int col){
+void randMatrix(double **A, int row, int col){
   srand((long)time(NULL));
-  for (int i=0; i<row; ++i){
-    for (int j=0; j<col; ++j){
-      REAL random = rand()/(REAL)RAND_MAX;
-      A[i][j] = random;
-    }
+  for (int i=0; i<row; ++i)
+  {
+    for (int j=0; j<col; ++j) A[i][j] = rand()/(double)RAND_MAX;
   }
 }
 
-void displayMatrix(REAL **M, int row, int col){
+void randVector(double *A, int size){
+  srand((long)time(NULL));
+  for (int i=0; i<size; ++i) A[i] = rand()/(double)RAND_MAX;
+}
+
+void displayMatrix(double **M, int row, int col){
   for (int i=0; i<row; ++i){
     for (int j=0; j<col; ++j) printf("%.2f ", M[i][j]);
     printf("\n");
   }
 }
 
-void displayMatrix(REAL *M, int row, int col){
+void displayMatrix(double *M, int row, int col){
   for (int i=0; i<row; ++i){
     for (int j=0; j<col; ++j){
       int idx = i*col + j;
@@ -36,6 +38,10 @@ void displayMatrix(REAL *M, int row, int col){
     }
     printf("\n");
   }
+}
+
+void displayVector(double *A, int size){
+  for (int i=0; i<size; ++i) printf("%.2f \n", A[i]);
 }
 
 void dgemm( double **A, int rowA, int colA, 
@@ -237,13 +243,9 @@ float sdot( float *vecA, float *vecB, int size, float alpha, float beta )
 
 // TODO: GTEST
 void daxpy( double *x, double *y, int size, double alpha)
-{
-  for (int i=0; i<size; ++i) y[i] += alpha*x[i];
-}
+{ for (int i=0; i<size; ++i) y[i] += alpha*x[i]; }
 
 // TODO: GTEST
 void saxpy( float *x, float *y, int size, float alpha)
-{
-  for (int i=0; i<size; ++i) y[i] += alpha*x[i];
-}
+{ for (int i=0; i<size; ++i) y[i] += alpha*x[i]; }
 
