@@ -1,7 +1,5 @@
 #!/bin/zsh
 
-# $1="Updated existing modules and added new files";
-
 function autoPush(){
   echo "Updating and pushing to master repository";
   git add .;
