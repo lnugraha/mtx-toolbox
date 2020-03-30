@@ -23,7 +23,7 @@ int main(int argc, char *argv[]){
   for (int i=0; i<SIZE; ++i) C[i] = 0.0;
 
   randMatrix(A, side, side); randMatrix(B, side, side);
-
+#if 0
   { 
   Timer time_00;
   dgemm(A, side, side, B, side, side, C);
@@ -41,6 +41,7 @@ int main(int argc, char *argv[]){
   gsl_blas_dgemm(CblasNoTrans, CblasNoTrans, 1.0, &A_gsl.matrix, &B_gsl.matrix, 
   0.0, &C_gsl.matrix);
   }
+#endif  
   /*
   printf("\nDisplaying Matrix Multiplication Result:\n");
   for (int i=0; i<side; ++i){
@@ -52,18 +53,28 @@ int main(int argc, char *argv[]){
   }
   */
 
-#if 0
 // Matrix matrix multiplication using 2D array scenario
   for (int i=0; i<side; ++i){
     for (int j=0; j<side; ++j){
       Z[i][j] = 0.0;
     }
   }  
-  randMatrix(X, side, side);
-  randMatrix(Y, side, side);
+
+  randMatrix(X, side, side); randMatrix(Y, side, side);
+  
+  {
+  printf("Matrix-Matrix Multiplication Results ijk Formation\n");
+  Timer time_02;
   dgemm(X, side, side, Y, side, side, Z);
-  displayMatrix(Z, side, side);
-#endif
+  }
+
+  {
+  printf("Matrix-Matrix Multiplication Results jki Formation\n");
+  Timer time_03;
+  dgemm_opt(X, side, side, Y, side, side, Z);
+  
+  }
+  // displayMatrix(Z, side, side);
   free(A); free(B); free(C);
   for (int i=0; i<side; ++i){
     free(X[i]); free(Y[i]); free(Z[i]);

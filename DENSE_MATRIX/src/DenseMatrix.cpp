@@ -49,8 +49,7 @@ void dgemm( double **A, int rowA, int colA,
             double **C, double alpha, double beta, double gamma)
 {
   if (colA != rowB){
-    printf("ERROR: Inconsistent number of rows and columns");
-    exit(1);
+    printf("ERROR: Inconsistent number of rows and columns"); exit(1);
   }
   for (int i=0; i<rowA; ++i){
     for (int k=0; k<colB; ++k){
@@ -69,8 +68,7 @@ void dgemm( double *A, int rowA, int colA,
             double *C, double alpha, double beta, double gamma)
 {
   if (colA != rowB){
-    printf("ERROR: Inconsistent number of rows and columns");
-    exit(1);
+    printf("ERROR: Inconsistent number of rows and columns"); exit(1);
   }
   for (int i=0; i<rowA; ++i){
     for (int k=0; k<colB; ++k){
@@ -110,12 +108,30 @@ void dgemm( double *A, int rowA, int colA,
 //  }
 // }
 
+void dgemm_opt( double **A, int rowA, int colA, double **B, int rowB, int colB, 
+                double **C, double alpha, double beta, double gamma )
+{
+  if (colA != rowB){
+    printf("ERROR: Inconsistent number of rows and columns"); exit(1);
+  }
+  for (int j=0; j<colB; ++j){
+    for (int i=0; i<rowA; ++i){ 
+      C[i][j] = 0.0; 
+    } // END-FOR i
+
+    for (int k=0; k<rowB; ++k){
+      for (int i=0; i<rowA; ++i){
+        C[i][j] += (alpha*A[i][k]) * (beta*B[k][j]);
+      } // END-FOR i
+    } // END-FOR k
+  } // END-FOR j
+}
+
 void sgemm( float **A, int rowA, int colA, float **B, int rowB, int colB, 
             float **C, float alpha, float beta, float gamma )
 {
   if (colA != rowB){
-    printf("ERROR: Inconsistent number of rows and columns");
-    exit(1);
+    printf("ERROR: Inconsistent number of rows and columns"); exit(1);
   }
   for (int i=0; i<rowA; ++i){
     for (int k=0; k<colB; ++k){
@@ -133,8 +149,7 @@ void sgemm( float *A, int rowA, int colA, float *B, int rowB, int colB,
             float *C, float alpha, float beta, float gamma )
 {
   if (colA != rowB){
-    printf("ERROR: Inconsistent number of rows and columns");
-    exit(1);
+    printf("ERROR: Inconsistent number of rows and columns"); exit(1);
   }
   for (int i=0; i<rowA; ++i){
     for (int k=0; k<colB; ++k){
@@ -156,8 +171,7 @@ void dgemv( double **matA, int rowA, int colA, double *vecB, int sizeB,
             double *vecC )
 {
   if (colA != sizeB){
-    printf("ERROR: Inconsistent number of rows and columns");
-    exit(1);
+    printf("ERROR: Inconsistent number of rows and columns"); exit(1);
   }
   for (int i=0; i<rowA; ++i){
     double sum = 0.0;
@@ -173,8 +187,7 @@ void dgemv( double *matA, int rowA, int colA, double *vecB, int sizeB,
             double *vecC )
 {
   if (colA != sizeB){
-    printf("ERROR: Inconsistent number of rows and columns");
-    exit(1);
+    printf("ERROR: Inconsistent number of rows and columns"); exit(1);
   }
   for (int i=0; i<rowA; ++i){
     double sum = 0.0;
@@ -191,8 +204,7 @@ void sgemv( float **matA, int rowA, int colA, float *vecB, int sizeB,
             float *vecC )
 {
   if (colA != sizeB){
-    printf("ERROR: Inconsistent number of rows and columns");
-    exit(1);
+    printf("ERROR: Inconsistent number of rows and columns"); exit(1);
   }
   for (int i=0; i<rowA; ++i){
     float sum = 0.0;
@@ -208,8 +220,7 @@ void sgemv( float *matA, int rowA, int colA, float *vecB, int sizeB,
             float *vecC )
 {
   if (colA != sizeB){
-    printf("ERROR: Inconsistent number of rows and columns");
-    exit(1);
+    printf("ERROR: Inconsistent number of rows and columns"); exit(1);
   }
   for (int i=0; i<rowA; ++i){
     double sum = 0.0;

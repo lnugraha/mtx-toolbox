@@ -24,6 +24,11 @@ void displayVector(double *A, int size);
 void dgemm( double **A, int rowA, int colA, double **B, int rowB, int colB, 
             double **C, double alpha=1.0, double beta=1.0, double gamma=1.0 );
 
+void dgemm_opt( double **A, int rowA, int colA, 
+                double **B, int rowB, int colB, 
+                double **C, 
+                double alpha=1.0, double beta=1.0, double gamma=1.0 );
+
 void dgemm( double *A, int rowA, int colA, double *B, int rowB, int colB, 
             double *C, double alpha=1.0, double beta=1.0, double gamma=1.0 );
 
