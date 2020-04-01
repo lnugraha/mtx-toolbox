@@ -14,7 +14,7 @@ int main(int argc, char *argv[]){
  * const double *b, const MKL_INT ldb, const double beta, 
  * double *c, const MKL_INT ldc); */
 
-  const int SIZE = 1000000;
+  const int SIZE = 100000000;
   int side = sqrt(SIZE);
   REAL *A = (REAL*)calloc(SIZE, sizeof(REAL));
   REAL *B = (REAL*)calloc(SIZE, sizeof(REAL));
@@ -28,13 +28,13 @@ int main(int argc, char *argv[]){
   side, side, side, 1.0, A, side, B, side, 1.0, C_mkl, side);
   }
   // displayMatrix(C_mkl, side, side);
-
+/*
   {
   Timer original;
   dgemm(A, side, side, B, side, side, C, 1.0, 1.0, 1.0);
   }
   // displayMatrix(C, side, side);
-
+*/
   free(A); free(B); free(C); free(C_mkl);
   return 0;
 }

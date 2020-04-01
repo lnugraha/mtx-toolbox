@@ -7,7 +7,7 @@
 #define REAL double
 
 int main(int argc, char *argv[]){
-  const int SIZE = 1000000;
+  const int SIZE = 10000;
   int side = sqrt(SIZE);
   REAL *A = (REAL*)calloc(SIZE, sizeof(REAL));
   REAL *B = (REAL*)calloc(SIZE, sizeof(REAL)); 
@@ -72,7 +72,6 @@ int main(int argc, char *argv[]){
   printf("Matrix-Matrix Multiplication Results jki Formation\n");
   Timer time_03;
   dgemm_opt(X, side, side, Y, side, side, Z);
-  
   }
   // displayMatrix(Z, side, side);
   free(A); free(B); free(C);

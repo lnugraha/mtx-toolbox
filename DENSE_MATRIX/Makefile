@@ -8,4 +8,4 @@ mkl:
 	-lpthread -lm -ldl -o intmkl
 
 clear:
-	rm main
+	rm main; rm intmkl;
