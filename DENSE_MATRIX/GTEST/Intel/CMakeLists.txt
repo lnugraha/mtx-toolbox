@@ -2,20 +2,21 @@ cmake_minimum_required(VERSION 3.13)
 project(IntelMKL_BLAS_Operations)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-
+set(BLA_DEFINITIONS)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O0 -Wall")
-
-find_package(GTest REQUIRED)
-include_directories("${GTEST_INCLUDE_DIRS}")
-include_directories(${BLA_INCLUDE_DIR})
-include_directories("../../include")
-
-add_definitions(-DHAVE_CONFIG_H)
-add_definitions(-DSOURCE_CODE_LOCAION="${CMAKE_SOURCE_DIR}")
 
 if ("$ENV{MKLROOT}" STREQUAL "")
   message(FATAL_ERROR "MKLROOT is not set. Please source the Intel MKL mklvars.sh file.")
 endif()
+
+add_subdirectory(intel_src)
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+include_directories("../../include")
+
+# add_definitions(-DHAVE_CONFIG_H)
+# add_definitions(-DSOURCE_CODE_LOCAION="${CMAKE_SOURCE_DIR}")
+
 
 option(MKL_USE_parallel "Use MKL parallel" True)
 option(MKL_USE_sdl "Single Dynamic Library or static/dynamic" False)
@@ -36,11 +37,8 @@ if (MKL_FOUND)
 endif()
 
 file(GLOB SOURCE_FILES "../../src/*.cpp")
-
 message(STATUS "BLAS Libraries: ${BLAS_LIBRARIES}")
+
 add_executable(main ${SOURCE_FILES} main.cpp)
-target_link_libraries(main ${GTEST_LIBRARIES} pthread)
-
-# target_link_libraries(main "-Wl,--start-group" ${MKL_LIBRARIES} "-Wl,--end-group" ${GTEST_LIBRARIES} pthread)
-
+target_link_libraries(main intel_src::intel_src ${GTEST_LIBRARIES} pthread)
 

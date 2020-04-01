@@ -6,5 +6,5 @@ if [[ -d build/ ]]; then
 fi
 
 mkdir build; cd ./build; 
-cmake ..;
-make -j4;
+cmake .. && cmake --build .;
+# make -j4;
