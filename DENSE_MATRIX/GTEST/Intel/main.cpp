@@ -2,6 +2,19 @@
 #include <gtest/gtest.h>
 #include <math.h>
 
+#if defined USE_MKL
+  #include <mkl.h>
+  #include <mkl_lapacke.h>
+#else
+#ifdef __APPLE__
+  #include <Accelerate/Accelerate.h>
+#else
+  #include <mkl_cblas.h>
+#endif 
+
+#endif
+// #include <mkl_cblas.h>
+
 #define REAL double
 #define TOL 1.0E-06
 
@@ -20,14 +33,17 @@ TEST(CASE_01, one_dimension_configuration){
   randMatrix(B, side, side);
   // Manual Version
   dgemm(A, side, side, B, side, side, C);
-  #if 0
+
+#if 0
+  cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
+  side, side, side, 1.0, A, side, B, side, 1.0, C_ans, side);
   for (int i=0; i<side; ++i){
 	  for (int j=0; j<side; ++j){
 	    int idx = i*side + j;
 	    EXPECT_NEAR(C_ans[idx], C[idx], TOL);
   	}
   }
-  #endif
+#endif
   free(A); free(B); free(C); free(C_ans);
 }
 
