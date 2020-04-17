@@ -5,6 +5,10 @@
 #include <stdlib.h>
 #include <time.h>
 
+#include <future>
+#include <random>
+#include <numeric>
+
 #ifndef REAL
 #define REAL double
 #endif
