@@ -8,21 +8,6 @@ static T randReal(T min = 0.0, T max = 1.0){
   return dist( engine );
 }
 
-REAL* allocateOneDim(int size){
-  REAL *A;
-  if ( ( (REAL*)calloc(size, sizeof(REAL)) ) == NULL ){
-    std::cerr << "ERROR: Insufficient memory allocation\n";
-    exit(1);
-  } 
-  return A;
-}
-
-REAL** allocateTwoDim(int row, int col){
-  REAL **A;
-
-  return A;
-}
-
 void randMatrix(REAL *A, int row, int col){
   for (int i=0; i<row; ++i){
     for (int j=0; j<col; ++j){
@@ -241,6 +226,14 @@ double ddot( double *vecA, double *vecB, int size, double alpha, double beta )
   return product;
 }
 
+double ddot_async( double *vecA, double *vecB, int size, double alpha, 
+  double beta)
+{
+  double product = 0.0;
+
+  return product;
+}
+
 // TODO: GTEST
 float sdot( float *vecA, float *vecB, int size, float alpha, float beta )
 {
@@ -251,11 +244,28 @@ float sdot( float *vecA, float *vecB, int size, float alpha, float beta )
   return product;
 }
 
+float sdot_async( float *vecA, float *vecB, int size, float alpha, float beta )
+{
+  float product = 0.0;
+  
+  return product;
+}
+
 // TODO: GTEST
 void daxpy( double *x, double *y, int size, double alpha)
 { for (int i=0; i<size; ++i) y[i] += alpha*x[i]; }
+
+void daxpy_async( double *x, double *y, int size, double alpha)
+{
+
+}
+
 
 // TODO: GTEST
 void saxpy( float *x, float *y, int size, float alpha)
 { for (int i=0; i<size; ++i) y[i] += alpha*x[i]; }
 
+void saxpy_async( float *x, float *y, int size, float alpha)
+{
+
+}
