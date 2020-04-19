@@ -16,10 +16,6 @@
 #define REAL double
 #endif
 
-REAL* allocateOneDim(int size);
-
-REAL** allocateTwoDim(int row, int col);
-
 /*!@brief Random matrix generator with elements ranging from 0.0 to 1.0
  * @notes This version uses one dimensional array to represent a matrix
  * @param[in] A A dynamically allocated matrix with a size of (row * col)
