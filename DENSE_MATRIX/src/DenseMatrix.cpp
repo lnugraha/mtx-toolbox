@@ -8,24 +8,39 @@ static T randReal(T min = 0.0, T max = 1.0){
   return dist( engine );
 }
 
-void randMatrix(double *A, int row, int col){
+REAL* allocateOneDim(int size){
+  REAL *A;
+  if ( ( (REAL*)calloc(size, sizeof(REAL)) ) == NULL ){
+    std::cerr << "ERROR: Insufficient memory allocation\n";
+    exit(1);
+  } 
+  return A;
+}
+
+REAL** allocateTwoDim(int row, int col){
+  REAL **A;
+
+  return A;
+}
+
+void randMatrix(REAL *A, int row, int col){
   for (int i=0; i<row; ++i){
     for (int j=0; j<col; ++j){
       int idx = i*col + j;
-      A[idx] = randReal<double>();
+      A[idx] = randReal<REAL>();
     }
   }
 }
 
-void randMatrix(double **A, int row, int col){
+void randMatrix(REAL **A, int row, int col){
   for (int i=0; i<row; ++i)
   {
-    for (int j=0; j<col; ++j) A[i][j] = randReal<double>();
+    for (int j=0; j<col; ++j) A[i][j] = randReal<REAL>();
   }
 }
 
-void randVector(double *A, int size){
-  for (int i=0; i<size; ++i) A[i] = randReal<double>();
+void randVector(REAL *A, int size){
+  for (int i=0; i<size; ++i) A[i] = randReal<REAL>();
 }
 
 void dgemm( double **A, int rowA, int colA, 
