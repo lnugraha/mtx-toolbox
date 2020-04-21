@@ -16,6 +16,23 @@
 #define REAL double
 #endif
 
+template<typename T>
+static T randReal(T min = 0.0, T max = 1.0){
+  std::random_device seed;
+  std::mt19937 engine( seed() );
+  std::uniform_real_distribution<T> dist(min, max);
+  return dist( engine );
+}
+
+
+template<typename T>
+static T randInt(T min = 0, T max = 100){
+  std::random_device seed;
+  std::mt19937 engine( seed() );
+  std::uniform_int_distribution<T> dist(min, max);
+  return dist( engine );
+}
+
 /*!@brief Random matrix generator with elements ranging from 0.0 to 1.0
  * @notes This version uses one dimensional array to represent a matrix
  * @param[in] A A dynamically allocated matrix with a size of (row * col)

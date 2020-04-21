@@ -1,13 +1,5 @@
 #include "DenseMatrix.hpp"
 
-template<typename T>
-static T randReal(T min = 0.0, T max = 1.0){
-  std::random_device seed;
-  std::mt19937 engine( seed() );
-  std::uniform_real_distribution<T> dist(min, max);
-  return dist( engine );
-}
-
 void randMatrix(REAL *A, int row, int col){
   for (int i=0; i<row; ++i){
     for (int j=0; j<col; ++j){
