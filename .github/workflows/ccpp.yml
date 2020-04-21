@@ -10,11 +10,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    # - uses: actions/checkout@v2
     - name: configure
-      uses: actions/hello-world-javascript-action@v1
+      uses: action/checkout@v2
+      # uses: actions/hello-world-javascript-action@v1
       with: 
-        who-to-greet: 'Mona the Octocat'
+        who-to-greet: 'MacBookPro 16 Inch'
       id: hello
     - name: Echo the greeting's time
       run: echo 'The time was ${{ steps.hello.outputs.time }}'
