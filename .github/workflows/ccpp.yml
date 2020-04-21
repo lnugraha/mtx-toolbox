@@ -11,13 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: configure
-      uses: action/checkout@v2
+      uses: action/checkout@v1
       # uses: actions/hello-world-javascript-action@v1
-      with: 
-        who-to-greet: 'MacBookPro 16 Inch'
-      id: hello
-    - name: Echo the greeting's time
+      # with: 
+      #  who-to-greet: 'MacBookPro 16 Inch'
+      # id: hello
       run: echo 'The time was ${{ steps.hello.outputs.time }}'
+    - name: run multi line scripts
+      run: |
+        echo add another action to build
+        echo test and deploy
       
     #   run: ./configure
     # - name: make
