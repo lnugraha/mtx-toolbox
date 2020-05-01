@@ -28,7 +28,7 @@ TEST(CASE_00, TESTING){
   // Manual Version
   dgemm(A, side, side, B, side, side, C);
   cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, side, side, side, 1.0, A, side, B, side, 1.0, C_ans, side);
-  
+
   // mkl_dgemm(A, side, side, B, side, side, C_ans);
   for (int i=0; i<side; ++i){
 	  for (int j=0; j<side; ++j){
