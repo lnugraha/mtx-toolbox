@@ -18,22 +18,24 @@ TEST(CASE_01, one_dimension_configuration){
   for (int i=0; i<SIZE; ++i){ C[i] = 0.0; C_ans[i] = 0.0; }
   
   randMatrix(A, side, side); randMatrix(B, side, side);
+  
   // Manual Version
   dgemm(A, side, side, B, side, side, C);
 
   gsl_matrix_view A_gsl = gsl_matrix_view_array(A, side, side);
   gsl_matrix_view B_gsl = gsl_matrix_view_array(B, side, side);
   gsl_matrix_view C_gsl = gsl_matrix_view_array(C_ans, side, side);
+
   // GSL Version
   gsl_blas_dgemm(CblasNoTrans, CblasNoTrans, 1.0, &A_gsl.matrix, &B_gsl.matrix, 
   0.0, &C_gsl.matrix);
 
   for (int i=0; i<side; ++i){
-	for (int j=0; j<side; ++j){
-	  int idx = i*side + j;
-	  EXPECT_NEAR(C_ans[idx], C[idx], TOL);
-	}
-  }
+	  for (int j=0; j<side; ++j){
+	    int idx = i*side + j;
+	    EXPECT_NEAR(C_ans[idx], C[idx], TOL);
+  	} // END-FOR j
+  } // END-FOR i
   free(A); free(B); free(C); free(C_ans);
 }
 
