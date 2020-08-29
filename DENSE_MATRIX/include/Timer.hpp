@@ -6,18 +6,22 @@
 
 class Timer{
   public:
-	Timer(){
-	  m_StartTimepoint = std::chrono::high_resolution_clock::now();
-	};
-	~Timer(){
-	  Stop();
-	};
+	  Timer(){
+	    m_StartTimepoint = std::chrono::high_resolution_clock::now();
+	  };
+	
+    ~Timer(){
+	    Stop();
+	  };
 
-	void Stop();
+	  void Stop();
+
+    double CalculateTime( double(*functionPtr)(double *, int, int, 
+          double *, int, int, double *, int, int, double, double, double) );
 
   private:
-	std::chrono::time_point< std::chrono::high_resolution_clock > 
-	m_StartTimepoint;
+	  std::chrono::time_point< std::chrono::high_resolution_clock > 
+      m_StartTimepoint;
 };
 
 #endif
