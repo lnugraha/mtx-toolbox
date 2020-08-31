@@ -21,7 +21,8 @@ jobs:
       run: |
         echo add another action to build
         echo test and deploy
-        ../../DENSE_MATRIX/GTEST/GSL/runScript.sh
+        pwd
+        ./DENSE_MATRIX/GTEST/GSL/runScript.sh
 
     #   run: ./configure
     # - name: make
