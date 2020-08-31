@@ -24,10 +24,12 @@ jobs:
         # ./DENSE_MATRIX/GTEST/GSL/runScript.sh
     - name: make
       run: |
-        export PATH=$GITHUB_WORKSPACE/mtx-toolbox/bin:$PATH
-        make -j8
-    - name: make install
-      run: make install
+        echo ${GITHUB_WORKSPACE}
+        echo $(pwd)
+        # export PATH=$GITHUB_WORKSPACE/mtx-toolbox/bin:$PATH
+        # make -j8
+    # - name: make install
+    #  run: make install
     #   run: ./configure
     # - name: make
     #  run: make
