@@ -21,7 +21,7 @@ jobs:
       run: |
         echo add another action to build
         echo test and deploy
-        # ./DENSE_MATRIX/GTEST/GSL/runScript.sh
+        /home/runner/work/mtx-toolbox/mtx-toolbox/DENSE_MATRIX/GTEST/GSL/runScript.sh
     - name: make
       run: |
         echo ${GITHUB_WORKSPACE}
